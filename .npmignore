@@ -1,0 +1,10 @@
+.git
+.DS_Store
+.project
+.github
+.gitignore
+package-lock.json
+test
+rollup.config.js
+node_modules
+modules

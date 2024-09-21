@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试 / 自定义</title>
+    <link rel="shortcut icon" href="../logo.png">
+    <script src="../node_modules/vislite/lib/index.umd.js"></script>
+    <script src="../dist/chart.js"></script>
+    <style>
+        #root {
+            width: 500px;
+            height: 500px;
+            outline: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script>
+        var el = document.getElementById("root");
+        var painter = new VISLite.Canvas(el);
+
+        ChartJs.install(VISLite);
+
+        var mychart = new ChartJs({
+            grid: {
+                width: 500,
+                height: 500
+            },
+            series: [{
+                type: "custom"
+            }],
+            update: function (data) {
+                console.log(data)
+
+                painter.config({
+                    fillStyle: "red",
+                    fontSize: 40
+                }).fillText("Custom", 50, 50);
+
+            }
+        });
+
+
+    </script>
+
+</body>
+
+</html>

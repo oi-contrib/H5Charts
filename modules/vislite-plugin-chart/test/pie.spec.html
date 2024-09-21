@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试 / 饼图</title>
+    <link rel="shortcut icon" href="../logo.png">
+    <script src="../node_modules/vislite/lib/index.umd.js"></script>
+    <script src="../node_modules/@vislite/canvas/dist/canvas.js"></script>
+    <script src="../dist/chart.js"></script>
+    <style>
+        #root {
+            width: 500px;
+            height: 500px;
+            outline: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script>
+        var el = document.getElementById("root");
+        var painter = new VISLite.Canvas(el);
+
+        var canvasJs = new CanvasJs(painter);
+
+        ChartJs.install(VISLite);
+
+        var mychart = new ChartJs({
+            grid: {
+                width: 500,
+                height: 500
+            },
+            series: [{
+                type: "pie",
+                data: [50, 100, 30, 100, 30, 44],
+                radius: [100, 200]
+            }],
+            update: function (data) {
+                painter.clearRect(0, 0, 500, 500);
+
+                // console.log(data)
+
+                var colors = VISLite.getLoopColors(data.series[0].arcs.length);
+
+                for (var i = 0; i < data.series[0].arcs.length; i++) {
+                    painter.config({
+                        fillStyle: colors[i]
+                    }).fillArc(data.series[0].arcs[i].cx, data.series[0].arcs[i].cy, data.series[0].arcs[i].radius[0], data.series[0].arcs[i].radius[1], data.series[0].arcs[i].beginDeg, data.series[0].arcs[i].deg);
+                }
+            }
+        });
+
+        console.log(mychart)
+
+        setTimeout(function () {
+            mychart.setOption({
+                series: [{
+                    type: "pie",
+                    data: [50, 30, 100, 30, 44],
+                    radius: [90, 200]
+                }],
+            });
+        }, 2000);
+
+
+    </script>
+
+</body>
+
+</html>

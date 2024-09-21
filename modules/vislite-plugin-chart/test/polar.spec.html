@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试 / 极坐标系</title>
+    <link rel="shortcut icon" href="../logo.png">
+    <script src="../node_modules/vislite/lib/index.umd.js"></script>
+    <script src="../node_modules/@vislite/canvas/dist/canvas.js"></script>
+    <script src="../dist/chart.js"></script>
+    <style>
+        #root {
+            width: 500px;
+            height: 500px;
+            outline: 1px solid gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script>
+        var el = document.getElementById("root");
+        var painter = new VISLite.Canvas(el);
+
+        var canvasJs = new CanvasJs(painter);
+
+        ChartJs.install(VISLite);
+
+        var mychart = new ChartJs({
+            grid: {
+                width: 500,
+                height: 500
+            },
+            radiusAxis: {
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                type: "category"
+            },
+            angleAxis: {
+                type: "value"
+            },
+            series: [{
+                type: "bar",
+                coordinateSystem: "polar",
+                data: [150, 230, 224, 218, 135, 147, 260]
+            }],
+            update: function (data) {
+                painter.clearRect(0, 0, 700, 500);
+
+                console.log(data)
+
+                var colors = VISLite.getLoopColors(data.series.length);
+
+                for (var i = 0; i < data.series.length; i++) {
+
+                    if (data.series[i].type == "bar") {
+                        painter.config({
+                            fillStyle: colors[i]
+                        });
+
+                        for (var j = 0; j < data.series[i].rects.length; j++) {
+                            var rect = data.series[i].rects[j];
+                            painter.fillArc(rect.cx, rect.cy, rect.radius[0], rect.radius[1], rect.beginDeg, rect.deg);
+                        }
+
+                    }
+                }
+
+
+                painter.config({
+                    fillStyle: "black",
+                    fontSize: 12
+                });
+
+                var polar = data.polar;
+                if (data.polar) {
+
+                    painter.beginPath()
+                        .moveTo(polar.radiusAxis.begin.x, polar.radiusAxis.begin.y)
+                        .lineTo(polar.radiusAxis.end.x, polar.radiusAxis.end.y)
+                        .stroke();
+
+                    for (var i = 0; i < polar.radiusAxis.masks.length; i++) {
+                        var mask = polar.radiusAxis.masks[i];
+                        painter.beginPath().moveTo(mask.x, mask.y).lineTo(mask.x - 5, mask.y).stroke();
+                    }
+
+                    for (var i = 0; i < polar.radiusAxis.texts.length; i++) {
+                        var text = polar.radiusAxis.texts[i];
+                        painter.config({
+                            textAlign: "right",
+                            textBaseline: "middle"
+                        }).fillText(text.content, text.x - 10, text.y);
+                    }
+
+                    painter.fillArc(
+                        polar.angleAxis.cx, polar.angleAxis.cy,
+                        polar.angleAxis.radius, polar.angleAxis.radius + 1,
+                        polar.angleAxis.beginDeg, polar.angleAxis.deg
+                    );
+
+                    for (var i = 0; i < polar.angleAxis.masks.length; i++) {
+                        var mask = polar.angleAxis.masks[i];
+                        painter.fillCircle(mask.x, mask.y, 2);
+                    }
+
+                    for (var i = 0; i < polar.angleAxis.texts.length; i++) {
+                        var text = polar.angleAxis.texts[i];
+                        painter.config({
+                            textAlign: "left",
+                            textBaseline: "middle"
+                        }).fillText(" " + text.content, text.x, text.y, text.deg);
+                    }
+
+                }
+
+            }
+        });
+
+        setTimeout(function () {
+            mychart.setOption({
+                angleAxis: {
+                    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                    type: "category"
+                },
+                radiusAxis: {
+                    type: "value"
+                }
+            });
+        }, 2000);
+
+    </script>
+
+</body>
+
+</html>
