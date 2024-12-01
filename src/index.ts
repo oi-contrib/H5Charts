@@ -1,9 +1,9 @@
 import type OptionType from "../types/option"
 import type H5ChartsType from "../types/index"
-import type ChartJsType from "../modules/vislite-plugin-chart/src/index"
-import type CanvasType from "vislite/types/Canvas"
+import type ChartJsType from "./chart/index"
+import type CanvasType from "./canvas/index"
 
-import ChartJs from "../modules/vislite-plugin-chart/src/index"
+import ChartJs from "./chart/index"
 import optionFactory from "./option/index"
 import resizeObserver from "./resizeObserver"
 import mergeOption from "vislite/package/mergeOption/index"
@@ -35,15 +35,15 @@ export default class H5Charts implements H5ChartsType {
         this.chartjs = new ChartJs({})
 
         resizeObserver(el, throttle(() => {
-            this.painter = new Canvas(el)
-            this.chartjs.setOption(optionFactory(this.painter, this.option))
+            this.painter = new Canvas(el) as any
+            this.chartjs.setOption(optionFactory(this.painter as any, this.option))
         }))
 
     }
 
     setOption(option: OptionType) {
         mergeOption(this.option, option)
-        this.chartjs.setOption(optionFactory(this.painter, this.option))
+        this.chartjs.setOption(optionFactory(this.painter as any, this.option))
         return this
     }
 

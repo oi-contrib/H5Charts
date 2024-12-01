@@ -1,4 +1,4 @@
-import type DataType from "../../modules/vislite-plugin-chart/types/data"
+import type DataType from "../chart/types/data"
 import type OptionType from "../../types/option"
 import type CanvasType from "vislite/types/Canvas"
 import type { CustomType } from "../../types/serie"

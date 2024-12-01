@@ -1,12 +1,11 @@
 {
   "name": "h5charts",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "一个基于 JavaScript 的开源可视化图表库",
   "main": "dist/H5Charts.min.js",
   "typings": "./types/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "init": "npm install && oipage-cli --copy ./node_modules/pageby/dist/pageby.min.js ./docs/js/min/pageby.min.js",
     "dev": "oipage-cli --run \"rollup --config ./rollup.config.js -w\" \"oipage-cli -s\"",
     "build": "rollup --config ./rollup.config.js && terser ./dist/H5Charts.js --compress --mangle --output ./dist/H5Charts.min.js && node ./build/index.js"
   },
@@ -32,7 +31,6 @@
     "@rollup/plugin-typescript": "^11.1.0",
     "@types/node": "^20.14.1",
     "oipage": "^0.1.0",
-    "pageby": "^0.2.0",
     "rollup": "^4.6.1",
     "terser": "^5.17.1",
     "tslib": "^2.5.0",

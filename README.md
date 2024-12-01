@@ -67,6 +67,8 @@ mychart.setOption({
 
 更多内容和细节，你可以直接[ 查看文档 ](https://oi-contrib.github.io/H5Charts) 获得哦～
 
+> 此外，你还可以使用跨端的[ "H5Charts / Chart" ](./src/chart/README.md)和[ "H5Charts / Canvas" ](./src/canvas/README.md)来创建自己的图表库项目～
+
 ## 版权
 
 MIT License

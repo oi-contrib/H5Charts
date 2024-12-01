@@ -1,4 +1,4 @@
-import OptionType from "./option"
+import OptionType from "./types/option"
 import VISLiteType from "vislite/types/index"
 
 export default class ChartJs {

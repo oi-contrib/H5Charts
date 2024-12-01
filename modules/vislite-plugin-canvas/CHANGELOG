@@ -1,8 +1,0 @@
-v0.1.0:
-    date:2024-08-23
-    changes:
-      - 初始化版本
-        1、地图块
-          （fillFeature、strokeFeature、fullFeature）
-        2、箭头
-          （drawArrow）

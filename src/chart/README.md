@@ -1,42 +1,12 @@
-# [@vislite/chart](https://github.com/oi-contrib/H5Charts/blob/master/modules/vislite-plugin-chart/README.md)
-基于[ VISLite ](https://github.com/oi-contrib/VISLite)开发的可视化图表库（基础布局版本可跨端，类似无头ECharts）
-
-<p>
-    <a href="https://zxl20070701.github.io/toolbox/#/npm-download?packages=@vislite/chart&interval=7">
-        <img src="https://img.shields.io/npm/dm/@vislite/chart.svg" alt="downloads">
-    </a>
-    <a href="https://www.npmjs.com/package/@vislite/chart">
-        <img src="https://img.shields.io/npm/v/@vislite/chart.svg" alt="Version">
-    </a>
-    <a href="https://github.com/oi-contrib/H5Charts/blob/master/modules/vislite-plugin-chart/README.md" target='_blank'>
-        <img alt="GitHub repo stars" src="https://img.shields.io/github/stars/oi-contrib/VISLite?style=social">
-    </a>
-</p>
-
-<img src="https://nodei.co/npm/@vislite/chart.png?downloads=true&amp;downloadRank=true&amp;stars=true" alt="NPM">
-
-## 如何使用？
-
-### 创建&初始化
-
-首先，需要进行安装：
-
-```
-npm install --save @vislite/chart
-```
-
-然后获取即可：
+# H5Charts / Chart
 
 ```js
 import VISLite from "vislite";
-import ChartJs from "@vislite/chart";
+import ChartJs from "h5charts/src/chart/index";
 
 ChartJs.install(VISLite);
-
 var mychart = new ChartJs(option);
 ```
-
-上面的option是一个json，具体格式如下：
 
 ```js
 option =  {
@@ -199,9 +169,3 @@ ChartJs.registerMap("china", chinaGeoJSON);
 ```js
 mychart.setOption(option);
 ```
-
-## 版权
-
-MIT License
-
-Copyright (c) [zxl20070701](https://zxl20070701.github.io/notebook/home.html) 走一步，再走一步

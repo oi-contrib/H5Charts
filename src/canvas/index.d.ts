@@ -1,7 +1,7 @@
 import CanvasType from "vislite/types/Canvas"
 
-import { FeatureType } from "../src/feature/index"
-import { ArrowType } from "../src/arrow/index"
+import { FeatureType } from "./feature/index"
+import { ArrowType } from "./arrow/index"
 
 export default class {
 

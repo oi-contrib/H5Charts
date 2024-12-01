@@ -1,7 +1,7 @@
 import type CanvasType from "vislite/types/Canvas"
 import type MapType from "vislite/types/Map"
 
-import featureFactory from "../../modules/vislite-plugin-canvas/src/feature/index"
+import featureFactory from "../canvas/feature/index"
 
 export function drawMap(painter: CanvasType, serie: any, map: MapType, cx: number, cy: number, option: any, dynamicOption: any) {
     let fullFeature = featureFactory(painter, "full")
